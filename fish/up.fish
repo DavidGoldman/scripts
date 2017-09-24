@@ -9,13 +9,13 @@ function up
 
   # Just use the search term if it is rooted.
   if string match -q '/*' "$argv[1]"
-    echo "$UP_DIR_CMD $argv[1]"
+    eval "$UP_DIR_CMD \$argv[1]"
     return 0
   end
 
-  set -l result (dirsearch_up_first "$PWD" "$argv[1]")
+  set -l result (dirsearch_up_first "$argv[1]")
   if test $status -eq 0
-    echo "$UP_DIR_CMD $result"
+    eval "$UP_DIR_CMD \$result"
     return 0
   end
 
