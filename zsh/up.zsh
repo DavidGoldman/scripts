@@ -37,11 +37,19 @@ oup() {
   UP_DIR_CMD="$old_dir_cmd"
   return $ret_val
 }
+# Save previous non-rooted search term
+# to be able to cycle through.
+__UP_COMPL_LAST_TERM=''
 _up_tab_completion() {
   local args
   read -cA args
   shift args
   if [[ "${#args[@]}" -eq 1 ]]; then
+    if [[ "${args[1]}" == "/"* ]]; then
+      args[1]="${__UP_COMPL_LAST_TERM}"
+    else
+      __UP_COMPL_LAST_TERM="${args[1]}"
+    fi
     _dirsearch_up_all "$PWD" "${args[1]}" reply
   else
     reply=()
