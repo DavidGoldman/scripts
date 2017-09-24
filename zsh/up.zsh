@@ -9,13 +9,13 @@ up() {
 
   # Just use the search term if it is rooted.
   if [[ "$1" == "/"* ]]; then
-    echo "$UP_DIR_CMD $1"
+    "${UP_DIR_CMD}" "$1"
     return 0
   fi
 
   local result=$(dirsearch_up_first "$1")
   if [[ "$?" -eq 0 ]];  then
-    echo "$UP_DIR_CMD $result"
+    "${UP_DIR_CMD}" "$result"
     return 0
   fi
 
