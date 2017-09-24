@@ -14,7 +14,7 @@ up() {
   fi
 
   local result=$(dirsearch_up_first "$1")
-  if [[ "$?" -eq 0 ]];  then
+  if [[ -n "$result" ]];  then
     "${UP_DIR_CMD}" "$result"
     return 0
   fi
