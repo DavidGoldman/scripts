@@ -1,9 +1,9 @@
 
 set UP_DIR_CMD 'cd'
-# Usage: up partial-parent-dir-component
+# Usage: up <parent dir substring>
 function up
   if test (count $argv) -ne 1
-    echo 'Usage:' (status current-function) 'parent-dir'
+    echo 'Usage:' (status current-function) 'parent-dir-substring'
     return 1
   end
 

@@ -1,9 +1,9 @@
 
 UP_DIR_CMD='cd'
-# Usage: up partial-parent-dir-component
+# Usage: up <parent dir substring>
 up() {
   if [[ "$#" -ne 1 ]]; then
-    echo "Usage: $0 parent-dir"
+    echo "Usage: $0 parent-dir-substring"
     return 1
   fi
 
