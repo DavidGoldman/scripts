@@ -65,17 +65,18 @@ _dirsearch_up_all() {
     echo "Usage: $0 cur_dir, search_term, *out_var"
     return 1
   fi
-  local components=(${(s:/:)1})
+  local components
+  components=(${(s:/:)1})
 
   local search_term="$2:l"
   local out_var="$3"
   eval "$out_var=()"
 
-  local path=''
+  local dpath=''
   for component in $components; do
-    path="$path/$component"
+    dpath="$dpath/$component"
     if [[ "${component:l}" == *"${search_term}"* ]]; then
-      eval "$out_var+=(\$path)"
+      eval "$out_var+=(\$dpath)"
     fi
   done
 
@@ -89,7 +90,8 @@ dirsearch_up_first() {
   fi
   local search_term="$1"
   local cur_dir="$2"
-  local components=(${(s:/:)cur_dir})
+  local components
+  components=(${(s:/:)cur_dir})
 
   # Try case sensitive. Note the %% to go forwards.
   for component in $components; do
@@ -118,7 +120,8 @@ dirsearch_up_last() {
   fi
   local search_term="$1"
   local cur_dir="$2"
-  local components=(${(s:/:)cur_dir})
+  local components
+  components=(${(s:/:)cur_dir})
 
   # Try case sensitive. The (Oa) reverses the order.
   # Note the % to delete the shortest match.
